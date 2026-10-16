@@ -1,6 +1,6 @@
 {
   "name": "murdoku-save-bank",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "YavaDeus",
   "license": "MIT",
   "private": true,
@@ -16,6 +16,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "icons:generate": "bash icons/generate-icons.sh",
+    "docs:previews": "bash docs/generate-previews.sh",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

@@ -1,4 +1,4 @@
-.PHONY: help install build watch package test test-watch typecheck format format-check icons check clean
+.PHONY: help install build watch package test test-watch typecheck format format-check icons previews check clean
 
 default: help
 
@@ -25,6 +25,9 @@ clean: ## Clean dist/ and rebuild
 
 icons: ## Regenerate extension icons (requires ImageMagick)
 	npm run icons:generate
+
+previews: ## Redraw README previews (requires ImageMagick)
+	npm run docs:previews
 
 # Code quality
 

@@ -15,7 +15,25 @@
 
 ---
 
-## ✨ Why
+## ✨ Preview
+
+Look for the small **M** button in the **top-right corner of any puzzle page** (not in the browser toolbar):
+
+<div align="center">
+
+<img src="docs/button-location.png" alt="The M button in the top-right corner of a puzzle page" width="372" />
+
+</div>
+
+Click it to open the panel: name and save the current grid, then load any saved state back in one click.
+
+<div align="center">
+
+<img src="docs/panel-preview.png" alt="The panel with two saved states" width="356" />
+
+</div>
+
+## 🤔 Why
 
 [Murdoku](https://murdoku.com) mixes sudoku and cluedo. The game autosaves the last state of your grid, but only one: once you start testing a hypothesis, there is no way back to the position before it. Murdoku Save Bank keeps as many named snapshots as you want per puzzle and puts any of them back into the game's save in one click.
 
@@ -83,6 +101,7 @@ Then load the generated [dist/](dist/) folder as an unpacked extension, as above
 | `npm run typecheck`      | `tsc --noEmit` against the whole codebase         |
 | `npm run format`         | Prettier                                          |
 | `npm run icons:generate` | Regenerate the icons (requires ImageMagick)       |
+| `npm run docs:previews`  | Redraw the README previews (requires ImageMagick) |
 
 `make help` lists the same commands, and `make check` runs typecheck, format check and tests.
 
@@ -109,14 +128,11 @@ src/
 ├── puzzle.ts     puzzle id from URL, native save key
 └── types.ts      shared interfaces
 icons/            extension icons (16 / 48 / 128) + generator script
+docs/             README previews + generator script
 tests/            unit tests (jsdom)
 build.mjs         esbuild bundler
 manifest.json     Manifest V3
 ```
-
-## 🗺️ Roadmap
-
-Planned improvements are tracked in [IMPROVEMENTS.md](IMPROVEMENTS.md).
 
 ## 📄 License
 

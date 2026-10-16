@@ -21,7 +21,7 @@ Reverse-engineered from the game's bundle (`/play/assets/app-core-*.js`, progres
 - **Signed out**: the current grid of each puzzle lives in `localStorage["mrd_state_<puzzleId>"]`, a JSON value like `{"v":2,"s":"<code>","w":<width>,"h":<height>,"sym":"<suspect letters>"}`. It is written on every move. `puzzleId` is the URL path after `/play/`.
 - The game reads that key **only when the puzzle loads** and keeps the state in memory afterwards: restoring means writing the key, then reloading the page. Without the reload, the next move overwrites the injected value.
 - `mrd_catalog_v2` holds the per-puzzle status (in progress, completed). The extension leaves it alone.
-- **Signed in**: the state is stored in Firestore (`users/<uid>.puzzleProgress.<puzzleId>.gameState`) and the local `mrd_state_` keys are removed after the first sync. The extension does not support this mode (see `IMPROVEMENTS.md`).
+- **Signed in**: the state is stored in Firestore (`users/<uid>.puzzleProgress.<puzzleId>.gameState`) and the local `mrd_state_` keys are removed after the first sync. The extension does not support this mode.
 - `mrd_progress_*` keys (decoded `{"placed":[...]}` values) are a legacy format: the current game no longer reads them, it only deletes them on reset.
 
 ## Architecture
@@ -45,6 +45,10 @@ src/
 icons/
 ├── icon-{16,48,128}.png      # extension icons (icon-48 is also the floating button)
 └── generate-icons.sh         # regenerates them (ImageMagick)
+docs/
+├── button-location.png       # README preview: where the button is
+├── panel-preview.png         # README preview: open panel with two states
+└── generate-previews.sh      # draws both with ImageMagick, mirrors panel.css
 manifest.json     # Manifest V3, permission: storage; content script on murdoku.com
 build.mjs         # esbuild bundler, 1 entry: content
 dist/             # built extension, load this folder in the browser
@@ -101,6 +105,7 @@ npm run typecheck      # tsc --noEmit
 npm run format         # prettier --write
 npm run package        # build + zip dist/ to murdoku-save-bank.zip
 npm run icons:generate # regenerate icons (requires ImageMagick)
+npm run docs:previews  # redraw README previews (requires ImageMagick)
 make check             # typecheck + format check + tests
 ```
 
@@ -109,10 +114,6 @@ Load `dist/` as unpacked extension in `chrome://extensions/` or `brave://extensi
 ## Testing
 
 See `tests/README.md`. Unit tests only (jsdom): bank, URL parsing, page save access, keyboard shield, panel mounting and rendering. The real flow (button placement over the game, restore + reload, game picking the state up) is validated by hand on the site.
-
-## Improvements
-
-See `IMPROVEMENTS.md` for the roadmap of planned improvements and their current status.
 
 ## Rules
 
@@ -128,4 +129,5 @@ See `IMPROVEMENTS.md` for the roadmap of planned improvements and their current 
 - Export functions needed for testing
 - Mock `chrome` APIs with `vi.stubGlobal` in tests
 - **When the game changes its save format or keys**, update the "How the game saves" section in the same change
+- **When the panel's look changes**, update `docs/generate-previews.sh` to match and rerun `npm run docs:previews`
 - **When writing or modifying tests, refer to `tests/README.md`** and update it if you add new test patterns
