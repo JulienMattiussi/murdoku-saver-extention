@@ -64,7 +64,7 @@ When you are signed out, the game keeps each puzzle's grid in `localStorage` und
 ```bash
 git clone <this-repo> murdoku-save-bank
 cd murdoku-save-bank
-nvm use             # Node 22, see .nvmrc
+nvm use 24          # see engines.node in package.json
 npm install
 npm run build       # → dist/
 npm run package     # → murdoku-save-bank.zip (optional, same shape as the Release)

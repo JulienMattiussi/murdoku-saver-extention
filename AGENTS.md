@@ -90,7 +90,7 @@ tests/            # see tests/README.md
 
 ## Build & Test
 
-Node version is pinned in `.nvmrc` (22, same as CI): run `nvm use` first. Under Node 25, Node's own `localStorage` global shadows jsdom's and the tests fail with `localStorage.clear is not a function`.
+Node version is pinned in `package.json` `engines.node` (24), which CI reads: run `nvm use 24` first (a local `.nvmrc` is fine but is not committed). Under Node 25, Node's own `localStorage` global shadows jsdom's and the tests fail with `localStorage.clear is not a function`.
 
 ```bash
 npm install

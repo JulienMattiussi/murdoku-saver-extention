@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Murdoku Save Bank",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "YavaDeus",
   "description": "Save named Murdoku grid states and restore them into the game's native save",
   "permissions": ["storage"],

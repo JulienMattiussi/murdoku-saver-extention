@@ -24,7 +24,7 @@ Un seul niveau de tests : unitaires, sous jsdom, sans navigateur.
 
 ### Node
 
-Les tests tournent sous la version de `.nvmrc` (22). Sous Node 25, le `localStorage` natif de Node masque celui de jsdom (`localStorage.clear is not a function`).
+Les tests tournent sous Node 24 (`engines.node` du `package.json`, lu aussi par la CI). Sous Node 25, le `localStorage` natif de Node masque celui de jsdom (`localStorage.clear is not a function`).
 
 ### Ce qui se valide à la main
 
@@ -39,7 +39,7 @@ Le placement du bouton par-dessus le jeu, le rechargement et la reprise de l'ét
 ## Commandes
 
 ```bash
-nvm use              # Node 22
+nvm use 24           # Node 24
 npm test             # tous les tests
 npm run test:watch   # mode watch
 make check           # typecheck + format + tests

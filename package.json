@@ -5,6 +5,9 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24"
+  },
   "description": "Browser extension to save named Murdoku grid states and restore them into the game's native save",
   "scripts": {
     "build": "node build.mjs",
