@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Murdoku Save Bank",
+  "version": "0.2.0",
+  "author": "YavaDeus",
+  "description": "Save named Murdoku grid states and restore them into the game's native save",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://murdoku.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/icon-48.png"],
+      "matches": ["https://murdoku.com/*"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

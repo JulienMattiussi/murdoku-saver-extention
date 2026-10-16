@@ -1,0 +1,29 @@
+{
+  "name": "murdoku-save-bank",
+  "version": "0.2.0",
+  "author": "YavaDeus",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "description": "Browser extension to save named Murdoku grid states and restore them into the game's native save",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "package": "npm run build && cd dist && zip -r ../murdoku-save-bank.zip . && cd .. && echo 'wrote murdoku-save-bank.zip ('$(du -h murdoku-save-bank.zip | cut -f1)')'",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "icons:generate": "bash icons/generate-icons.sh",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/node": "^22.10.0",
+    "esbuild": "^0.24.0",
+    "jsdom": "^29.0.2",
+    "prettier": "^3.8.2",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.4"
+  }
+}

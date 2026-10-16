@@ -1,0 +1,70 @@
+name: Release
+
+# Builds the extension and attaches a zip to a GitHub Release.
+# Fires on a pushed `v*` tag (recommended workflow) or a manual run
+# from the Actions tab. The produced archive is the content of `dist/`:
+# users unzip it and load-unpacked it directly in chrome://extensions.
+#
+# To cut a release:
+#   1. Bump the version in package.json and manifest.json.
+#   2. git tag v1.2.3 && git push origin v1.2.3
+#   3. Wait ~2 min for CI; the Release appears with the zip attached.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag name (e.g. v1.0.1)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Format
+        run: npm run format:check
+
+      - name: Tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Zip dist/
+        id: zip
+        run: |
+          tag="${GITHUB_REF_NAME:-${{ github.event.inputs.tag }}}"
+          name="murdoku-save-bank-${tag}.zip"
+          # Zip from inside dist/ so the extension unzips to a flat dir
+          # (icons/, manifest.json, *.js, *.css, *.html at the top level)
+          cd dist && zip -r "../$name" .
+          echo "name=$name" >>"$GITHUB_OUTPUT"
+          echo "tag=$tag" >>"$GITHUB_OUTPUT"
+
+      - name: Create / update release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.zip.outputs.tag }}
+          name: ${{ steps.zip.outputs.tag }}
+          generate_release_notes: true
+          files: ${{ steps.zip.outputs.name }}
