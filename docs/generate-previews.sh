@@ -55,13 +55,15 @@ icon() { # icon x y size
 # Saved state row: y-top name date
 row() {
   local y=$1
-  dashed 44 316 "$y"
+  dashed 44 356 "$y"
   text 44 $((y + 22)) 13 "$INK" "$BOLD" "$2"
   text 44 $((y + 38)) 11 "$MUTED" "$FONT" "$3"
-  box 212 $((y + 12)) 283 $((y + 40)) 8 "$ACCENT" "$INK" 2 2
-  ctext 212 283 $((y + 31)) 12 "#ffffff" "$BOLD" "Charger"
-  box 289 $((y + 12)) 316 $((y + 40)) 8 "#ffffff" "$INK" 2 2
-  ctext 289 316 $((y + 31)) 12 "$ACCENT" "$BOLD" "✕"
+  box 162 $((y + 12)) 230 $((y + 40)) 8 "$ACCENT" "$INK" 2 2
+  ctext 162 230 $((y + 31)) 12 "#ffffff" "$BOLD" "Charger"
+  box 236 $((y + 12)) 323 $((y + 40)) 8 "#ffffff" "$INK" 2 2
+  ctext 236 323 $((y + 31)) 12 "$INK" "$BOLD" "Remplacer"
+  box 329 $((y + 12)) 356 $((y + 40)) 8 "#ffffff" "$INK" 2 2
+  ctext 329 356 $((y + 31)) 12 "$ACCENT" "$BOLD" "✕"
 }
 
 # 1. Where the button is: top-right corner of a puzzle page
@@ -77,17 +79,17 @@ text 104 112 11 "$MUTED" "$FONT" "top-right corner of every puzzle"
 render 372 130 $(icon 348 34 20) button-location.png
 
 # 2. The open panel with two saved states
-box 330 4 350 24 5 "$INK" "$INK" 1 1
-box 30 32 330 252 14 "$PAPER" "$INK" 3 4
+box 370 4 390 24 5 "$INK" "$INK" 1 1
+box 30 32 370 252 14 "$PAPER" "$INK" 3 4
 text 44 62 15 "$INK" "$BOLD" "Murdoku Save Bank"
 text 44 78 11 "$MUTED" "$FONT" "puzzle-a-messy-situation-hard"
-box 44 92 250 122 8 "#ffffff" "$INK" 2
+box 44 92 290 122 8 "#ffffff" "$INK" 2
 text 54 112 13 "$MUTED" "$FONT" "Nom de l'état"
-box 256 92 316 122 8 "$ACCENT" "$INK" 2 2
-ctext 256 316 112 12 "#ffffff" "$BOLD" "Sauver"
-row 136 "Hypothèse Colonel" "16/10 14:12"
+box 296 92 356 122 8 "$ACCENT" "$INK" 2 2
+ctext 296 356 112 12 "#ffffff" "$BOLD" "Sauver"
+row 136 "Hypothèse" "16/10 14:12"
 row 190 "Début" "16/10 13:53"
 # shellcheck disable=SC2046
-render 356 266 $(icon 330 4 20) panel-preview.png
+render 396 266 $(icon 370 4 20) panel-preview.png
 
 echo "Previews written to $(pwd)"

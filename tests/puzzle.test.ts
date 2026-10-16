@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getPuzzleId, stateKey } from "../src/puzzle";
+import { getPuzzleId, progressKey, stateKey } from "../src/puzzle";
 
 describe("getPuzzleId", () => {
   it("extracts the id from a game page URL", () => {
@@ -30,8 +30,12 @@ describe("getPuzzleId", () => {
   });
 });
 
-describe("stateKey", () => {
+describe("save keys", () => {
   it("prefixes the puzzle id with the game's state prefix", () => {
     expect(stateKey("puzzle-x-easy")).toBe("mrd_state_puzzle-x-easy");
+  });
+
+  it("prefixes the puzzle id with the game's progress prefix", () => {
+    expect(progressKey("puzzle-x-easy")).toBe("mrd_progress_puzzle-x-easy");
   });
 });

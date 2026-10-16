@@ -1,8 +1,13 @@
 import css from "../panel/panel.css";
+import { applyPendingRestore } from "../page";
 import { createPanelController } from "../panel/controller";
 import { mountPanel, type PanelElements } from "../panel/mount";
 import { getPuzzleId } from "../puzzle";
 import { installKeyboardShield } from "./keyboard-shield";
+
+// Before anything else (document_start): a restore made just before the
+// reload is written again, in case the game overwrote it while unloading.
+applyPendingRestore();
 
 // The game is a single-page app: the URL changes without a reload when the
 // player opens another puzzle, so it is polled.

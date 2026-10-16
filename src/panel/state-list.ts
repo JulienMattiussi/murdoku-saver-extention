@@ -2,6 +2,7 @@ import type { SavedState } from "../types";
 
 export interface StateListHandlers {
   onRestore: (entry: SavedState) => void;
+  onReplace: (entry: SavedState) => void;
   onDelete: (entry: SavedState) => void;
 }
 
@@ -55,6 +56,12 @@ export function renderStateList(
       li.append(
         label,
         button("Charger", () => handlers.onRestore(entry), "primary"),
+        button(
+          "Remplacer",
+          () => handlers.onReplace(entry),
+          "",
+          "Remplacer par la grille actuelle",
+        ),
         button("✕", () => handlers.onDelete(entry), "danger icon", "Supprimer"),
       );
       return li;

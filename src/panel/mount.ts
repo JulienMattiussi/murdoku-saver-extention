@@ -10,6 +10,9 @@ export interface PanelElements {
   confirmCancel: HTMLButtonElement;
   form: HTMLFormElement;
   name: HTMLInputElement;
+  save: HTMLButtonElement;
+  /** Wraps `states` and `empty`; the confirm box takes its place. */
+  list: HTMLElement;
   states: HTMLElement;
   empty: HTMLElement;
 }
@@ -25,19 +28,21 @@ const MARKUP = `
       <p class="puzzle muted"></p>
     </header>
     <p class="message" hidden></p>
-    <div class="confirm" hidden>
-      <p class="confirm-text"></p>
-      <div class="actions">
-        <button class="confirm-cancel" type="button">Annuler</button>
-        <button class="confirm-ok danger" type="button">Confirmer</button>
-      </div>
-    </div>
     <form>
       <input type="text" placeholder="Nom de l'état" required autocomplete="off" />
       <button type="submit">Sauver</button>
     </form>
-    <ul class="states"></ul>
-    <p class="empty muted" hidden>Aucun état sauvegardé pour ce puzzle.</p>
+    <div class="confirm" hidden>
+      <p class="confirm-text"></p>
+      <div class="actions">
+        <button class="confirm-cancel" type="button">Annuler</button>
+        <button class="confirm-ok primary" type="button">Confirmer</button>
+      </div>
+    </div>
+    <div class="list">
+      <ul class="states"></ul>
+      <p class="empty muted" hidden>Aucun état sauvegardé pour ce puzzle.</p>
+    </div>
   </div>
 `;
 
@@ -77,6 +82,8 @@ export function mountPanel(
     confirmCancel: $(".confirm-cancel"),
     form: $("form"),
     name: $("input"),
+    save: $('button[type="submit"]'),
+    list: $(".list"),
     states: $(".states"),
     empty: $(".empty"),
   };

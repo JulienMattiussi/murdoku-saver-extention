@@ -25,11 +25,11 @@ Look for the small **M** button in the **top-right corner of any puzzle page** (
 
 </div>
 
-Click it to open the panel: name and save the current grid, then load any saved state back in one click.
+Click it to open the panel: name and save the current grid, load any saved state back in one click, or replace a saved state with the current grid.
 
 <div align="center">
 
-<img src="docs/panel-preview.png" alt="The panel with two saved states" width="356" />
+<img src="docs/panel-preview.png" alt="The panel with two saved states" width="396" />
 
 </div>
 
@@ -41,6 +41,7 @@ Click it to open the panel: name and save the current grid, then load any saved 
 
 - 💾 **Named snapshots**: save the current grid as "avant hypothèse Colonel", "début", whatever helps.
 - ⏪ **One-click restore**: the snapshot is written into the game's native save and the page reloads on it.
+- 🔁 **Replace in place**: update a saved state with the current grid without retyping its name.
 - 📌 **Right on the page**: a small button in the top-right corner of every puzzle opens the panel, no toolbar trip needed.
 - 🧩 **Per puzzle**: each puzzle has its own list, picked from the page URL, and the panel follows you when you switch puzzles.
 - ⌨️ **No stray moves**: what you type in the panel never reaches the grid.
@@ -52,7 +53,7 @@ Click it to open the panel: name and save the current grid, then load any saved 
 ```
  murdoku.com tab
  ┌──────────────────────────────────────────────────────────┐
- │  game ── localStorage["mrd_state_<id>"]                  │
+ │  game ── localStorage: mrd_progress_<id>, mrd_state_<id> │
  │                ▲  │                                      │
  │  write + reload│  │read raw value          [M] ◀ button  │
  │                │  ▼                     ┌─────────────┐  │
@@ -64,7 +65,7 @@ Click it to open the panel: name and save the current grid, then load any saved 
         bank: { puzzleId: [states] }
 ```
 
-When you are signed out, the game keeps each puzzle's grid in `localStorage` under `mrd_state_<puzzleId>` and reads it only when the puzzle loads. The extension's content script copies that value into its bank, and to restore it writes the value back and reloads the page. See [AGENTS.md](AGENTS.md) for the details.
+When you are signed out, the game keeps each puzzle's grid in two `localStorage` keys (`mrd_progress_<puzzleId>` and `mrd_state_<puzzleId>`) and reads them only when the puzzle loads. The extension's content script copies both values into its bank, and to restore it writes them back and reloads the page. See [AGENTS.md](AGENTS.md) for the details.
 
 > ⚠️ **Signed-in players are not supported yet**: the game then stores the grid on its servers, out of the extension's reach. Play signed out to use the bank.
 
