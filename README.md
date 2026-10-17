@@ -17,19 +17,19 @@
 
 ## ✨ Preview
 
-Look for the small **M** button in the **top-right corner of any puzzle page** (not in the browser toolbar):
-
-<div align="center">
-
-<img src="docs/button-location.png" alt="The M button in the top-right corner of a puzzle page" width="372" />
-
-</div>
-
-Click it to open the panel: name and save the current grid, load any saved state back in one click, or replace a saved state with the current grid.
+Name and save the current grid, load any saved state back in one click, or replace a saved state with the current grid:
 
 <div align="center">
 
 <img src="docs/panel-preview.png" alt="The panel with two saved states" width="396" />
+
+</div>
+
+To open the panel, look for the small **M** button in the **top-right corner of any puzzle page** (not in the browser toolbar):
+
+<div align="center">
+
+<img src="docs/button-location.png" alt="The M button in the top-right corner of a puzzle page" width="372" />
 
 </div>
 
